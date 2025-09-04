@@ -1,0 +1,29 @@
+{
+  "name": "google-search-mcp",
+  "version": "1.0.0",
+  "description": "基于 Google 自定义可编程搜索的 MCP 服务器",
+  "main": "index.js",
+  "bin": {
+    "google-search-mcp": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mcp",
+    "google-search",
+    "model-context-protocol",
+    "ai",
+    "search"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.5",
+    "axios": "^1.11.0"
+  },
+  "engines": {
+    "node": ">=16"
+  }
+}

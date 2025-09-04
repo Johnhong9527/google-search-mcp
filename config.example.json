@@ -1,0 +1,11 @@
+{
+  "googleSearch": {
+    "apiKey": "YOUR_GOOGLE_API_KEY",
+    "searchEngineId": "YOUR_SEARCH_ENGINE_ID",
+    "baseUrl": "https://www.googleapis.com"
+  },
+  "mcp": {
+    "serverName": "google-search-mcp",
+    "serverVersion": "1.0.0"
+  }
+}
