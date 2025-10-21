@@ -14,18 +14,24 @@ npm install
 
 ## 配置
 
-1. 复制配置示例文件：
+1. 设置环境变量：
 ```bash
-cp config.example.json config.json
+export GOOGLE_API_KEY="你的 Google API 密钥"
+export GOOGLE_SEARCH_ENGINE_ID="你的搜索引擎 ID"
 ```
 
-2. 编辑 `config.json` 文件，填入你的 Google API 密钥和搜索引擎 ID：
+2. 或者在使用时通过环境变量传入配置：
 ```json
 {
-  "googleSearch": {
-    "apiKey": "你的 Google API 密钥",
-    "searchEngineId": "你的搜索引擎 ID",
-    "baseUrl": ""
+  "mcpServers": {
+    "google-search": {
+      "command": "node",
+      "args": ["/path/to/google-search-mcp/index.js"],
+      "env": {
+        "GOOGLE_API_KEY": "你的 API 密钥",
+        "GOOGLE_SEARCH_ENGINE_ID": "你的搜索引擎 ID"
+      }
+    }
   }
 }
 ```
@@ -66,6 +72,8 @@ cp config.example.json config.json
 }
 ```
 
+注意：代理配置已硬编码为 http://127.0.0.1:7890，需要确保本地有代理服务运行。
+
 ### 可用工具
 
 #### google_search
@@ -74,17 +82,15 @@ cp config.example.json config.json
 
 **参数：**
 - `q` (必需): 搜索内容
-- `key` (必需): Google API 密钥
-- `cx` (必需): 可编程搜索引擎 ID
+- `key` (必需): Google API 密钥 (从环境变量获取)
+- `cx` (必需): 可编程搜索引擎 ID (从环境变量获取)
 
 **示例：**
 ```json
 {
   "name": "google_search",
   "arguments": {
-    "q": "人工智能最新发展",
-    "key": "YOUR_API_KEY",
-    "cx": "YOUR_SEARCH_ENGINE_ID"
+    "q": "人工智能最新发展"
   }
 }
 ```
@@ -102,6 +108,11 @@ npm start
 ```bash
 npm test
 ```
+
+### 环境变量说明
+
+- `GOOGLE_API_KEY`: Google API 密钥
+- `GOOGLE_SEARCH_ENGINE_ID`: Google 搜索引擎 ID
 
 ## 错误处理
 
