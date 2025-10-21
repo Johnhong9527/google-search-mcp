@@ -18,6 +18,9 @@ npm install
 ```bash
 export GOOGLE_API_KEY="你的 Google API 密钥"
 export GOOGLE_SEARCH_ENGINE_ID="你的搜索引擎 ID"
+export PROXY_HOST="127.0.0.1"  # 可选：代理主机地址
+export PROXY_PORT="7890"       # 可选：代理端口
+export PROXY_PROTOCOL="http"   # 可选：代理协议
 ```
 
 2. 或者在使用时通过环境变量传入配置：
@@ -29,7 +32,10 @@ export GOOGLE_SEARCH_ENGINE_ID="你的搜索引擎 ID"
       "args": ["/path/to/google-search-mcp/index.js"],
       "env": {
         "GOOGLE_API_KEY": "你的 API 密钥",
-        "GOOGLE_SEARCH_ENGINE_ID": "你的搜索引擎 ID"
+        "GOOGLE_SEARCH_ENGINE_ID": "你的搜索引擎 ID",
+        "PROXY_HOST": "127.0.0.1",
+        "PROXY_PORT": "7890",
+        "PROXY_PROTOCOL": "http"
       }
     }
   }
@@ -113,6 +119,9 @@ npm test
 
 - `GOOGLE_API_KEY`: Google API 密钥
 - `GOOGLE_SEARCH_ENGINE_ID`: Google 搜索引擎 ID
+- `PROXY_HOST`: 代理主机地址 (默认: 127.0.0.1)
+- `PROXY_PORT`: 代理端口 (默认: 7890)
+- `PROXY_PROTOCOL`: 代理协议 (默认: http)
 
 ## 错误处理
 

@@ -29,6 +29,10 @@ const GOOGLE_SEARCH_ENDPOINT = '/customsearch/v1';
 // 从环境变量获取配置
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 const GOOGLE_SEARCH_ENGINE_ID = process.env.GOOGLE_SEARCH_ENGINE_ID;
+// 从环境变量获取代理配置
+const PROXY_HOST = process.env.PROXY_HOST;
+const PROXY_PORT = process.env.PROXY_PORT || 7890;
+const PROXY_PROTOCOL = process.env.PROXY_PROTOCOL || 'http';
 
 // 列出可用工具
 server.setRequestHandler(ListToolsRequestSchema, async () => {
@@ -73,8 +77,8 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       // 构建 API 请求 URL
       const url = `${GOOGLE_SEARCH_API_BASE_URL}${GOOGLE_SEARCH_ENDPOINT}`;
       
-      // 发送请求到 Google 搜索 API
-      const response = await axios.get(url, {
+      // 构建请求配置
+      const requestConfig = {
         params: {
           q: q,
           key: GOOGLE_API_KEY,
@@ -83,13 +87,20 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         },
         headers: {
           'Accept': 'application/json',
-        },
-        proxy: {
-          host: '127.0.0.1',
-          port: 7890,
-          protocol: 'http'
         }
-      });
+      };
+
+      // 只有当 PROXY_HOST 存在时才设置 proxy
+      if (PROXY_HOST) {
+        requestConfig.proxy = {
+          host: PROXY_HOST,
+          port: parseInt(PROXY_PORT),
+          protocol: PROXY_PROTOCOL
+        };
+      }
+
+      // 发送请求到 Google 搜索 API
+      const response = await axios.get(url, requestConfig);
 
       // 返回搜索结果
       return {
