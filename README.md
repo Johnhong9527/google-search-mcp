@@ -25,7 +25,7 @@ cp config.example.json config.json
   "googleSearch": {
     "apiKey": "你的 Google API 密钥",
     "searchEngineId": "你的搜索引擎 ID",
-    "baseUrl": "http://124.221.51.4:11232/api"
+    "baseUrl": ""
   }
 }
 ```
